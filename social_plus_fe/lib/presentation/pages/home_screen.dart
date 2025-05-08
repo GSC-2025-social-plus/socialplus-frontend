@@ -7,12 +7,28 @@ import '../widgets/common_app_bar.dart';
 import '../widgets/custom_bottom_nav_bar.dart';
 import '../widgets/primary_action_button.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  @override
+  void initState() {
+    super.initState();
+
+    Future.microtask(() {
+      final viewModel = context.read<HomeViewModel>();
+      viewModel.loadLessons();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     final viewModel = context.watch<HomeViewModel>();
+
     return Scaffold(
       appBar: buildCommonAppBar(username: '김민성님'),
       backgroundColor: AppColors.background,
@@ -31,8 +47,11 @@ class HomeScreen extends StatelessWidget {
               child: viewModel.isLoading
                   ? const Center(child: CircularProgressIndicator())
                   : ListView.builder(
+                clipBehavior: Clip.none,
+                physics: const BouncingScrollPhysics(),
                 scrollDirection: Axis.horizontal,
                 itemCount: viewModel.lessons.length,
+                padding: const EdgeInsets.only(right: 16),
                 itemBuilder: (context, index) {
                   final lesson = viewModel.lessons[index];
                   return _buildLessonCard(
@@ -40,10 +59,14 @@ class HomeScreen extends StatelessWidget {
                     imagePath: lesson.imagePath,
                     title: lesson.title,
                     description: lesson.description,
-                    buttonText: lesson.isAvailable ? '시작하기' : '레슨 완료 후 이용하세요',
-                    onPressed: lesson.isAvailable ? () {
+                    buttonText: lesson.isAvailable
+                        ? '시작하기'
+                        : '레슨 완료 후 이용하세요',
+                    onPressed: lesson.isAvailable
+                        ? () {
                       // TODO: 다음 화면 이동
-                    } : null,
+                    }
+                        : null,
                   );
                 },
               ),
@@ -64,16 +87,16 @@ class HomeScreen extends StatelessWidget {
               ),
               alignment: MainAxisAlignment.start,
               width: 280,
-            )
+            ),
           ],
         ),
       ),
-    bottomNavigationBar: CustomBottomNavBar(
-    currentIndex: 1,
-    onTap: (index) {
-      //TODO: 내비게이션 처리
-    },
-    )
+      bottomNavigationBar: CustomBottomNavBar(
+        currentIndex: 1,
+        onTap: (index) {
+          // TODO: 내비게이션 처리
+        },
+      ),
     );
   }
 
