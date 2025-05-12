@@ -7,8 +7,8 @@ import '../widgets/common_app_bar.dart';
 import '../widgets/custom_bottom_nav_bar.dart';
 import '../widgets/primary_action_button.dart';
 
-class LessonSelectScreen extends StatelessWidget {
-  const LessonSelectScreen({super.key});
+class LessonSelectionScreen extends StatelessWidget {
+  const LessonSelectionScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

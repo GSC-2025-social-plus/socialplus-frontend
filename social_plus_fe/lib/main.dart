@@ -6,7 +6,10 @@ import 'package:social_plus_fe/presentation/pages/home_screen.dart';
 import 'package:social_plus_fe/presentation/pages/lesson_selection_screen.dart';
 import 'package:social_plus_fe/presentation/viewmodels/home_viewmodel.dart';
 import 'package:social_plus_fe/presentation/viewmodels/lesson_select_viewmodel.dart';
+import 'package:social_plus_fe/presentation/viewmodels/user_preferences_viewmodel.dart';
 import 'data/repositories/lesson_repository.dart';
+import 'data/repositories/user_preferences_repository_impl.dart';
+import 'data/user_preferences_data_source.dart';
 import 'presentation/pages/type_choose_screen.dart';
 import 'presentation/pages/job_type_screen.dart';
 import 'package:provider/provider.dart';
@@ -20,6 +23,11 @@ void main() {
           create: (context) => HomeViewModel(context.read<LessonRepository>()),
         ),
         ChangeNotifierProvider(create: (_) => LessonSelectViewModel()),
+        ChangeNotifierProvider(
+          create: (_) => UserPreferencesViewModel(
+            UserPreferencesRepositoryImpl(UserPreferencesDataSource()),
+          ),
+        ),
       ],
       child: const MyApp(),
     ),
@@ -45,7 +53,7 @@ class MyApp extends StatelessWidget {
       LessonListScreen.routeName: (context) => LessonListScreen(),
       ChatPage.routeName: (context) => const ChatPage(),
       // 추가
-      '/lessonSelect': (context) => const LessonSelectScreen(),
+      '/lessonSelect': (context) => const LessonSelectionScreen(),
       '/home': (context) => const HomeScreen(),
     },
   );
