@@ -23,21 +23,25 @@ class CommonScaffold extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
-  void _handleNavTap(BuildContext context, int index) {
-    final prefs = context.read<UserPreferencesViewModel>();
+  void _handleNavTap(BuildContext context, int index) async {
 
     switch (index) {
       case 0:
         context.go('/home');
         break;
       case 1:
-        final type = prefs.conversationType;
+        final prefsViewModel = context.read<UserPreferencesViewModel>();
+        print('[TAB] before load: ${prefsViewModel.conversationType}');
+        await prefsViewModel.loadPreferences();
+        final type = prefsViewModel.conversationType;
+        print('[TAB] after load: $type');
         context.go(type != null && type.isNotEmpty
             ? '/lesson-selection'
             : '/type-choose');
+
         break;
       case 2:
-        context.go('/profile');
+        // context.go('/profile');
         break;
     }
   }

@@ -31,8 +31,6 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     final viewModel = context.watch<HomeViewModel>();
-    final prefsViewModel = context.read<UserPreferencesViewModel>();
-    final selectedType = prefsViewModel.conversationType;
 
     return CommonScaffold(
       title: "김민성님",
@@ -80,11 +78,16 @@ class _HomeScreenState extends State<HomeScreen> {
             const SizedBox(height: 12),
             PrimaryActionButton(
               text: '레슨 진행하기',
-              onPressed: () {
+              onPressed: () async {
+                final prefs = context.read<UserPreferencesViewModel>();
+                await prefs.loadPreferences();
+
+                final selectedType = prefs.conversationType;
+
                 if (selectedType != null && selectedType.isNotEmpty) {
-                  context.push('/lesson-selection'); // 대화 유형 선택 O
+                  context.push('/lesson-selection');
                 } else {
-                  context.push('/type-choose'); // 대화 유형 선택 X
+                  context.push('/type-choose');
                 }
               },
               icon: Image.asset(

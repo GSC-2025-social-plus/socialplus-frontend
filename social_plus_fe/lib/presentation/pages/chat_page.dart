@@ -9,7 +9,22 @@ import 'dart:async';
 
 class ChatPage extends StatefulWidget {
   static const routeName = '/chat';
-  const ChatPage({Key? key}) : super(key: key);
+
+  static const String _defaultUserId = 'user123';
+  static const String _defaultScenarioId = 'park_friend_scenario';
+
+  /* 추후 연결을 위한 부분 */
+  final int lessonIndex;
+  final String userId;
+  final String scenarioId;
+
+  const ChatPage({
+    super.key,
+    required this.lessonIndex,
+    this.scenarioId = _defaultScenarioId,
+    this.userId = _defaultUserId,
+  });
+/* 추후 연결을 위한 부분 */
 
   @override
   _ChatPageState createState() => _ChatPageState();
@@ -24,6 +39,7 @@ class _ChatPageState extends State<ChatPage> {
   static const String _sendUrl = 'https://sendmessage-imrcv7okwa-uc.a.run.app';
   static const String _userId = 'user123';
   static const String _scenarioId = 'park_friend_scenario';
+
 
   String? _sessionId; // startConversation 으로 받은 세션 ID
   String? _sessionStatus; // sendMessage 응답의 sessionStatus

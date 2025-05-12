@@ -23,7 +23,10 @@ final GoRouter appRouter = GoRouter(
     ),
     GoRoute(
       path: RouteNames.lesson,
-      builder: (context, state) => LessonListScreen(),
+      builder: (context, state) {
+        final lessonIndex = int.tryParse(state.uri.queryParameters['index'] ?? '0') ?? 0;
+        return LessonMissionsScreen(lessonIndex: lessonIndex);
+      },
     ),
     GoRoute(
       path: RouteNames.lessonSelection,
@@ -39,7 +42,15 @@ final GoRouter appRouter = GoRouter(
     ),
     GoRoute(
       path: RouteNames.chat,
-      builder: (context, state) => ChatPage(),
+      builder: (context, state) {
+        final lessonIndex = int.tryParse(state.uri.queryParameters['index'] ?? '0') ?? 0;
+        final scenarioId = state.uri.queryParameters['scenarioId'] ?? 'daily_lesson_1';
+
+        return ChatPage(
+          lessonIndex: lessonIndex,
+          scenarioId: scenarioId,
+        );
+      },
     ),
   ],
 );

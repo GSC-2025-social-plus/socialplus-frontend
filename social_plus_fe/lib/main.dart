@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:social_plus_fe/data/repositories/lesson_repository_impl.dart';
 import 'package:social_plus_fe/presentation/constants/colors.dart';
 import 'package:social_plus_fe/presentation/viewmodels/home_viewmodel.dart';
+import 'package:social_plus_fe/presentation/viewmodels/lesson_scenario_viewmodel.dart';
 import 'package:social_plus_fe/presentation/viewmodels/lesson_select_viewmodel.dart';
 import 'package:social_plus_fe/presentation/viewmodels/user_preferences_viewmodel.dart';
 import 'core/navigation/app_router.dart';
@@ -18,6 +20,7 @@ void main() {
       ),
       child: MultiProvider(
         providers: [
+          ChangeNotifierProvider(create: (_) => LessonScenarioViewModel(ScenarioRepositoryImpl())),
           Provider<LessonRepository>(create: (_) => LessonRepository()),
           ChangeNotifierProvider(
             create: (context) => HomeViewModel(context.read<LessonRepository>()),
