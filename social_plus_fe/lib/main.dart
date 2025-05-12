@@ -4,7 +4,7 @@ import 'package:social_plus_fe/presentation/viewmodels/home_viewmodel.dart';
 import 'package:social_plus_fe/presentation/viewmodels/lesson_select_viewmodel.dart';
 import 'package:social_plus_fe/presentation/viewmodels/user_preferences_viewmodel.dart';
 import 'core/navigation/app_router.dart';
-import 'data/repositories/lesson_repository.dart';
+import 'domain/popular_lesson_repository.dart';
 import 'data/repositories/user_preferences_repository_impl.dart';
 import 'data/user_preferences_data_source.dart';
 import 'package:provider/provider.dart';
