@@ -14,6 +14,10 @@ final GoRouter appRouter = GoRouter(
   initialLocation: RouteNames.splash,
   routes: [
     GoRoute(
+      path: RouteNames.splash,
+      builder: (context, state) => SplashPage(),
+    ),
+    GoRoute(
       path: RouteNames.home,
       builder: (context, state) => HomeScreen(),
     ),

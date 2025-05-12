@@ -36,10 +36,7 @@ class LessonListScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return CommonScaffold(
       title: 'Lesson1',
-      selectedNavIndex: 0,
-      onNavTap: (idx) {
-        /* 탭 이동 로직 */
-      },
+      selectedNavIndex: 1,
       backgroundColor: AppColors.background,
       body: Center(
         child: ConstrainedBox(

@@ -25,6 +25,7 @@ class UserPreferencesViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
+
   Future<void> saveLessonCompletion(List<bool> completionList) async {
     if (conversationType != null) {
       await repo.saveLessonCompletion(conversationType!, completionList);
