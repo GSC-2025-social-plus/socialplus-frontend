@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
+import 'package:social_plus_fe/presentation/routes/route_names.dart';
 import 'package:social_plus_fe/presentation/widgets/app_scaffold.dart';
 import 'package:social_plus_fe/presentation/pages/chat_page.dart';
 import 'package:social_plus_fe/presentation/constants/colors.dart';
@@ -90,7 +91,7 @@ class _LessonMissionsScreenState extends State<LessonMissionsScreen> {
                         final lessonIndex = widget.lessonIndex;
                         final scenarioId = scenario?.scenarioId ?? 'daily_lesson_1'; // 안전하게 fallback
                         context.push(
-                          '/chat?index=$lessonIndex&scenarioId=$scenarioId',
+                          '${RouteNames.chat}?index=$lessonIndex&scenarioId=$scenarioId',
                         );
                       },
                       icon: Image.asset(

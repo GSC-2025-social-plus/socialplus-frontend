@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:social_plus_fe/data/repositories/lesson_repository_impl.dart';
+import 'package:go_router/go_router.dart';
 import 'package:social_plus_fe/presentation/constants/colors.dart';
 import 'package:social_plus_fe/presentation/viewmodels/home_viewmodel.dart';
 import 'package:social_plus_fe/presentation/viewmodels/lesson_scenario_viewmodel.dart';
 import 'package:social_plus_fe/presentation/viewmodels/lesson_select_viewmodel.dart';
 import 'package:social_plus_fe/presentation/viewmodels/user_preferences_viewmodel.dart';
 import 'core/navigation/app_router.dart';
-import 'domain/popular_lesson_repository.dart';
-import 'data/repositories/user_preferences_repository_impl.dart';
+import 'data/repository/mock_scenario_repository.dart';
+import 'data/repository/user_preferences_repository_impl.dart';
+import 'domain/repository/popular_lesson_repository.dart';
 import 'data/user_preferences_data_source.dart';
 import 'package:provider/provider.dart';
 
 void main() {
+  GoRouter.optionURLReflectsImperativeAPIs = true;
   runApp(
     ConstrainedBox(
       constraints: const BoxConstraints(
@@ -20,7 +22,7 @@ void main() {
       ),
       child: MultiProvider(
         providers: [
-          ChangeNotifierProvider(create: (_) => LessonScenarioViewModel(ScenarioRepositoryImpl())),
+          ChangeNotifierProvider(create: (_) => LessonScenarioViewModel(MockScenarioRepository())),
           Provider<LessonRepository>(create: (_) => LessonRepository()),
           ChangeNotifierProvider(
             create: (context) => HomeViewModel(context.read<LessonRepository>()),
