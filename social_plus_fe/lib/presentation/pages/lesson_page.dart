@@ -62,14 +62,20 @@ class _LessonMissionsScreenState extends State<LessonMissionsScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  Text(
-                    scenario?.scenarioDescription ??
-                        '이 레슨에서는 다음 미션들을 수행해볼 거예요.',
-                    style: AppTextStyles.caption.copyWith(
-                      color: AppColors.text,
-                      height: 1.5,
+                  // ✅ 여기를 수정!
+                  SizedBox(
+                    height: 120,
+                    child: SingleChildScrollView(
+                      child: Text(
+                        scenario?.scenarioDescription ??
+                            '이 레슨에서는 다음 미션들을 수행해볼 거예요.',
+                        style: AppTextStyles.caption.copyWith(
+                          color: AppColors.text,
+                          height: 1.5,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
                     ),
-                    textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 24),
                   Expanded(
@@ -89,7 +95,7 @@ class _LessonMissionsScreenState extends State<LessonMissionsScreen> {
                       text: '시작하기',
                       onPressed: () {
                         final lessonIndex = widget.lessonIndex;
-                        final scenarioId = scenario?.scenarioId ?? 'daily_lesson_1'; // 안전하게 fallback
+                        final scenarioId = scenario?.scenarioId ?? 'daily_lesson_1';
                         context.push(
                           '${RouteNames.chat}?index=$lessonIndex&scenarioId=$scenarioId',
                         );

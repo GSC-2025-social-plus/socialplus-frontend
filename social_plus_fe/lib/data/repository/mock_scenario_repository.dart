@@ -17,6 +17,8 @@ class MockScenarioRepository implements ScenarioRepository {
         return _emotionScenario;
       case 'make_decision_scenario':
         return _decisionScenario;
+      case 'ask_for_help_scenario':
+        return _helpScenario;
       default:
         return _dailyScenario; // fallback
     }
@@ -58,6 +60,45 @@ final _dailyScenario = Scenario(
     Mission(description: '상대방의 관심사 한 가지씩 물어보기'),
     Mission(description: '공통 관심사 찾기'),
     Mission(description: '다음 만남에 대해 제안하기'),
+  ],
+);
+final  _helpScenario = Scenario(
+  scenarioId: 'ask_for_help_scenario',
+  scenarioName: '친구에게 프로젝트에 대한 도움을 요청하기',
+  scenarioDescription: '''
+이번에는 친구와 프로젝트를 해야 하는데, 친구에게 도움을 요청해야만 하는 상황이에요.
+DEAR MAN 기법으로 '내가 원하는 것'을 정확히 말하고,
+GIVE, FAST 기법으로 상대방과 좋은 관계를 유지하는 방법을 연습해봅시다!
+
+📌 DEAR MAN 기법은 우리가 원하는 것을 상대방에게 잘 전달해서 얻을 수 있도록 도와주는 대화 방식이에요.
+
+- D (Describe): 상황 묘사
+- E (Express): 감정 표현
+- A (Assert): 주장하기
+- R (Reinforce): 강화하기
+- M (Mindful): 집중하기
+- A (Appear): 자신감 있는 태도
+- N (Negotiate): 협상하기
+
+📌 FAST 기법은 자기존중감을 지키며 대화하는 방법이에요.
+
+- F (Fair): 공정하게
+- A (Apologies): 최소한의 사과
+- S (Stick to Values): 가치관 지키기
+- T (Truthful): 진솔하게
+
+📌 GIVE 기법은 상대방과 좋은 관계를 유지하는 대화법이에요.
+
+- G (Gentle): 부드럽게
+- I (Interested): 관심 보이기
+- V (Validate): 공감하기
+- E (Easy Manner): 편안한 태도
+''',
+  missions: [
+    Mission(description: 'DEAR MAN 기법에서 최소 3단계 사용'),
+    Mission(description: 'GIVE FAST 기법을 참고해 공손함 유지'),
+    Mission(description: '요청 거절 가능성도 존중하는 태도 보이기'),
+    Mission(description: '대화 끝에 자신의 감정 솔직히 표현'),
   ],
 );
 
