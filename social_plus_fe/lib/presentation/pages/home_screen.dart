@@ -71,7 +71,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   final lesson = viewModel.lessons[index];
                   return LessonCard(
                     imagePath: lesson.imagePath,
-                    isAbled: _isAllCompleted,
+                    enabled: _isAllCompleted,
                     title: lesson.title,
                     description: lesson.description,
                     buttonText: _isAllCompleted? '시작하기' : '레슨 완료 후 이용하세요.',

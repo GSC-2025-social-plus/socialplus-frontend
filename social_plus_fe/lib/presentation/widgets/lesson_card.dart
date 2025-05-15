@@ -8,7 +8,7 @@ class LessonCard extends StatelessWidget {
   final String description;
   final String buttonText;
   final VoidCallback? onPressed;
-  final bool isAbled;
+  final bool enabled;
 
   const LessonCard({
     super.key,
@@ -16,7 +16,7 @@ class LessonCard extends StatelessWidget {
     required this.title,
     required this.description,
     required this.buttonText,
-    required this.isAbled,
+    required this.enabled,
     this.onPressed,
   });
 
@@ -27,7 +27,7 @@ class LessonCard extends StatelessWidget {
       height: 350,
       margin: const EdgeInsets.only(right: 16),
       decoration: BoxDecoration(
-        color: isAbled? AppColors.primary : Colors.grey,
+        color: AppColors.lightGray,
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(color: Colors.black12, blurRadius: 6, offset: Offset(0, 3)),
@@ -69,7 +69,7 @@ class LessonCard extends StatelessWidget {
                     onPressed: onPressed,
                     style: TextButton.styleFrom(
                       foregroundColor: Colors.white,
-                      backgroundColor: Colors.grey,
+                      backgroundColor: enabled? AppColors.primary : Colors.grey,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(40),
                       ),
